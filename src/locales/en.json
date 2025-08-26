@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "ArchitectDAO",
+    "tagline": "Unlock Your Sleeping Digital Assets",
+    "web3ForArchitects": "Web3 for Architects"
+  },
+  "header": {
+    "login": "Login / Sign Up",
+    "logout": "Logout",
+    "eoa": "EOA:",
+    "smartWallet": "Smart Wallet:"
+  },
+  "login": {
+    "welcome": "Welcome to ArchitectDAO",
+    "subtitle": "Transform your sleeping architectural intellectual property into valuable assets.",
+    "socialLogin": "Continue with Web3Auth",
+    "connecting": "Connecting to wallet...",
+    "accountAbstractionNote": "Account Abstraction (AA) technology creates a secure smart wallet using your social account. No need to manage mnemonic phrases.",
+    "heroTitle": "Transform Your Design Assets",
+    "heroSubtitle": "Join the first Web3 platform designed for architects. Monetize your unused design assets through NFTs with zero gas fees.",
+    "secureLogin": "Secure Login",
+    "secureLoginDesc": "Social accounts + Web3 security",
+    "zeroGasFees": "Zero Gas Fees", 
+    "zeroGasFeesDesc": "Free minting for new users",
+    "globalMarket": "Global Market",
+    "globalMarketDesc": "Connect with architects worldwide",
+    "loginDesc": "Login with your preferred social account to get started",
+    "web3AuthSecurity": "Web3Auth Security:",
+    "web3AuthSecurityDesc": "Your accounts are secured by multi-party computation (MPC). No seed phrases to remember or lose. Login with Google, Apple, Twitter or email.",
+    "termsNote": "By continuing, you agree to our Terms of Service and Privacy Policy"
+  },
+  "marketplace": {
+    "title": "Marketplace",
+    "author": "Creator:",
+    "fileType": "File Type:",
+    "purchase": "Purchase for",
+    "searchPlaceholder": "Search NFTs...",
+    "noResults": "No NFTs found matching your criteria.",
+    "allTypes": "All"
+  },
+  "mint": {
+    "title": "Mint Architectural Asset as NFT",
+    "subtitle": "Transform your \"sleeping assets\" into tradable digital assets. Free gas for first-time users!",
+    "assetName": "Asset Name",
+    "assetNamePlaceholder": "e.g., Modern Villa Design Plan",
+    "assetDescription": "Asset Description",
+    "assetDescriptionPlaceholder": "Please describe the content of the asset, design points, etc. in detail.",
+    "price": "Sale Price (ETH)",
+    "pricePlaceholder": "e.g., 1.5",
+    "file": "Design File (.zip, .rar, etc.)",
+    "mintButton": "Mint with Zero Gas Fee",
+    "minting": "Minting...",
+    "preparing": "Preparing mint process...",
+    "uploading": "Uploading file to IPFS...",
+    "sending": "Sending gasless transaction...",
+    "success": "Mint successful! TX:",
+    "failed": "Mint failed. Please try again."
+  },
+  "profile": {
+    "title": "Profile",
+    "myNFTs": "My NFTs",
+    "created": "Created",
+    "owned": "Owned",
+    "transactions": "Transaction History"
+  },
+  "nft": {
+    "details": "NFT Details",
+    "creatorAddress": "Creator Address:",
+    "fileFormat": "File Format:",
+    "purchase": "Purchase",
+    "created": "Created:"
+  },
+  "auth": {
+    "loginRequired": "Please Login",
+    "loginRequiredDesc": "Login to mint architectural assets as NFTs and start trading.",
+    "loginPrompt": "Please click the login button in the top right corner."
+  },
+  "features": {
+    "platformFeatures": "Platform Features",
+    "zeroGasFees": "Zero Gas Fees",
+    "zeroGasFeesDesc": "Mint your first NFT without any transaction fees",
+    "socialLogin": "Social Login", 
+    "socialLoginDesc": "No need to manage private keys or seed phrases",
+    "ipProtection": "IP Protection",
+    "ipProtectionDesc": "Built-in licensing and royalty management"
+  },
+  "footer": {
+    "copyright": "© 2025 ArchitectDAO. All rights reserved.",
+    "platform": "Platform",
+    "resources": "Resources",
+    "company": "Company",
+    "marketplace": "Marketplace",
+    "mintNFT": "Mint NFT",
+    "collections": "Collections",
+    "analytics": "Analytics",
+    "documentation": "Documentation",
+    "tutorials": "Tutorials",
+    "apiReference": "API Reference",
+    "support": "Support",
+    "about": "About",
+    "blog": "Blog",
+    "careers": "Careers",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "loading": "Loading...",
+  "common": {
+    "all": "All",
+    "search": "Search",
+    "filter": "Filter",
+    "noResults": "No results found"
+  }
+}

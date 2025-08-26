@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "ArchitectDAO",
+    "tagline": "眠っているデジタル資産を解放しよう",
+    "web3ForArchitects": "建築家のためのWeb3"
+  },
+  "header": {
+    "login": "ログイン / 新規登録",
+    "logout": "ログアウト",
+    "eoa": "EOA:",
+    "smartWallet": "スマートウォレット:"
+  },
+  "login": {
+    "welcome": "ArchitectDAOへようこそ",
+    "subtitle": "眠っている建築の知的財産を、価値ある資産へ。",
+    "socialLogin": "Web3Authで続行",
+    "connecting": "ウォレットに接続中...",
+    "accountAbstractionNote": "アカウント抽象化(AA)技術により、お使いのソーシャルアカウントで安全なスマートウォレットが作成されます。ニーモニックフレーズの管理は不要です。",
+    "heroTitle": "デザイン資産を変革しよう",
+    "heroSubtitle": "建築家のために設計された初のWeb3プラットフォームに参加しましょう。ガス代無料でNFTを通じて未使用のデザイン資産を収益化できます。",
+    "secureLogin": "安全なログイン",
+    "secureLoginDesc": "ソーシャルアカウント + Web3セキュリティ",
+    "zeroGasFees": "ガス代無料",
+    "zeroGasFeesDesc": "新規ユーザーは無料でミント可能",
+    "globalMarket": "グローバルマーケット",
+    "globalMarketDesc": "世界中の建築家とつながる",
+    "loginDesc": "お好みのソーシャルアカウントでログインして始めましょう",
+    "web3AuthSecurity": "Web3Authセキュリティ:",
+    "web3AuthSecurityDesc": "あなたのアカウントは多者間計算(MPC)により保護されています。シードフレーズを覚えたり失ったりする必要はありません。Google、Apple、Twitter、メールでログインできます。",
+    "termsNote": "続行することで、利用規約およびプライバシーポリシーに同意したものとみなされます"
+  },
+  "marketplace": {
+    "title": "マーケットプレイス",
+    "author": "作成者:",
+    "fileType": "ファイル形式:",
+    "purchase": "で購入する",
+    "searchPlaceholder": "NFTを検索...",
+    "noResults": "検索条件に一致するNFTが見つかりませんでした。",
+    "allTypes": "すべて"
+  },
+  "mint": {
+    "title": "建築アセットをNFT化",
+    "subtitle": "あなたの「眠れる資産」を取引可能なデジタル資産に変えましょう。初回利用者はガス代無料！",
+    "assetName": "アセット名",
+    "assetNamePlaceholder": "例：モダン邸宅の設計プラン",
+    "assetDescription": "アセット詳細",
+    "assetDescriptionPlaceholder": "アセットの内容、デザインのポイントなどを詳しく説明してください。",
+    "price": "販売価格 (ETH)",
+    "pricePlaceholder": "例：1.5",
+    "file": "設計ファイル (.zip, .rar など)",
+    "mintButton": "ガス代なしでミントする",
+    "minting": "ミント中...",
+    "preparing": "ミント処理を準備中...",
+    "uploading": "ファイルをIPFSにアップロード中...",
+    "sending": "ガスレス取引を送信中...",
+    "success": "ミント成功！ TX:",
+    "failed": "ミントに失敗しました。もう一度お試しください。"
+  },
+  "profile": {
+    "title": "プロフィール",
+    "myNFTs": "マイNFT",
+    "created": "作成済み",
+    "owned": "所有済み",
+    "transactions": "取引履歴"
+  },
+  "nft": {
+    "details": "NFT詳細",
+    "creatorAddress": "作成者アドレス:",
+    "fileFormat": "ファイル形式:",
+    "purchase": "購入する",
+    "created": "作成日:"
+  },
+  "auth": {
+    "loginRequired": "ログインしてください",
+    "loginRequiredDesc": "ログインすると、建築アセットのNFT化と取引が可能になります。",
+    "loginPrompt": "右上のボタンからログインしてください。"
+  },
+  "features": {
+    "platformFeatures": "プラットフォーム機能",
+    "zeroGasFees": "ガス代無料",
+    "zeroGasFeesDesc": "取引手数料なしで初回NFTをミント",
+    "socialLogin": "ソーシャルログイン",
+    "socialLoginDesc": "秘密鍵やシードフレーズの管理は不要",
+    "ipProtection": "IP保護",
+    "ipProtectionDesc": "ライセンスとロイヤリティ管理を内蔵"
+  },
+  "footer": {
+    "copyright": "© 2025 ArchitectDAO. All rights reserved.",
+    "platform": "プラットフォーム",
+    "resources": "リソース",
+    "company": "会社情報",
+    "marketplace": "マーケットプレイス",
+    "mintNFT": "NFTミント",
+    "collections": "コレクション",
+    "analytics": "分析",
+    "documentation": "ドキュメント",
+    "tutorials": "チュートリアル",
+    "apiReference": "APIリファレンス",
+    "support": "サポート",
+    "about": "会社概要",
+    "blog": "ブログ",
+    "careers": "採用情報",
+    "contact": "お問い合わせ",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約"
+  },
+  "loading": "ロード中...",
+  "common": {
+    "all": "すべて",
+    "search": "検索",
+    "filter": "フィルタ",
+    "noResults": "結果が見つかりませんでした"
+  }
+}
