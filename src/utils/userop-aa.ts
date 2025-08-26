@@ -1,8 +1,9 @@
 import { ethers } from 'ethers';
 import { Client, Presets } from 'userop';
-import { NERO_CONTRACTS, NERO_URLS } from './nerochain';
+import { NERO_CONTRACTS, NERO_URLS, neroChain } from './nerochain';
 
 export interface AAConfig {
+  rpcUrl: string;
   entryPoint: string;
   simpleAccountFactory: string;
   bundlerUrl: string;
@@ -11,55 +12,43 @@ export interface AAConfig {
 
 export class NeroAAService {
   private config: AAConfig;
-  private provider: ethers.providers.Provider;
   
-  constructor(provider: ethers.providers.Provider) {
-    this.provider = provider;
+  constructor() {
     this.config = {
+      rpcUrl: neroChain.rpcUrls.default.http[0],
       entryPoint: NERO_CONTRACTS.ENTRY_POINT,
       simpleAccountFactory: NERO_CONTRACTS.SIMPLE_ACCOUNT_FACTORY,
       bundlerUrl: NERO_URLS.BUNDLER,
       paymasterUrl: NERO_URLS.PAYMASTER,
     };
-    console.log('NeroAAService initialized with config:', this.config);
   }
 
   async createAAClient(signerOrProvider: ethers.Signer) {
     try {
-      console.log('Creating AA client with Nero Chain configuration...');
-      
-      // Create Client first
-      const client = await Client.init(this.config.bundlerUrl, {
+      const client = await Client.init(this.config.rpcUrl, {
+        overrideBundlerRpc: this.config.bundlerUrl,
         entryPoint: this.config.entryPoint,
       });
 
-      // Create paymaster middleware using Nero paymaster
       const paymasterMiddleware = Presets.Middleware.neroPaymaster(
         this.config.paymasterUrl && import.meta.env.VITE_PAYMASTER_API_KEY ? {
           rpc: this.config.paymasterUrl,
           apikey: import.meta.env.VITE_PAYMASTER_API_KEY,
-          type: "0" // Free gas sponsorship type
+          type: "0"
         } : undefined
       );
 
-      console.log('Paymaster middleware configured:', {
-        hasPaymaster: !!paymasterMiddleware,
-        paymasterUrl: this.config.paymasterUrl,
-        hasApiKey: !!import.meta.env.VITE_PAYMASTER_API_KEY
-      });
-
-      // Create SimpleAccount with paymaster middleware
       const simpleAccount = await Presets.Builder.SimpleAccount.init(
         signerOrProvider,
-        this.config.bundlerUrl,
+        this.config.rpcUrl,
         {
+          overrideBundlerRpc: this.config.bundlerUrl,
           entryPoint: this.config.entryPoint,
           factory: this.config.simpleAccountFactory,
           paymasterMiddleware: paymasterMiddleware,
         }
       );
 
-      console.log('AA client created successfully');
       return { simpleAccount, client };
     } catch (error) {
       console.error('Failed to create AA client:', error);
@@ -67,38 +56,7 @@ export class NeroAAService {
     }
   }
 
-  async getAccountAddress(owner: string): Promise<string> {
-    try {
-      // Calculate the counterfactual address
-      const initCode = ethers.utils.hexConcat([
-        this.config.simpleAccountFactory,
-        '0x5fbfb9cf', // createAccount selector
-        ethers.utils.defaultAbiCoder.encode(['address', 'uint256'], [owner, 0])
-      ]);
-
-      // Get the address using eth_call simulation
-      const result = await this.provider.call({
-        to: this.config.entryPoint,
-        data: ethers.utils.hexConcat([
-          '0x5fbfb9cf', // getSenderAddress selector
-          initCode.slice(2)
-        ])
-      });
-
-      return ethers.utils.getAddress('0x' + result.slice(-40));
-    } catch (error) {
-      console.error('Failed to get account address:', error);
-      // Fallback: generate deterministic address
-      return ethers.utils.getAddress(
-        ethers.utils.keccak256(
-          ethers.utils.defaultAbiCoder.encode(
-            ['address', 'address', 'uint256'],
-            [this.config.simpleAccountFactory, owner, 0]
-          )
-        ).slice(0, 42)
-      );
-    }
-  }
+  
 
   async mintNFTWithAA(
     simpleAccount: any,
