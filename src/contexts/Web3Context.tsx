@@ -36,23 +36,25 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
         // Configure Nero Chain with real settings
         const chainConfig = {
           chainNamespace: CHAIN_NAMESPACES.EIP155,
-          chainId: neroChain.id.toString(16),
+          chainId: "0x" + neroChain.id.toString(16), // Ensure 0x prefix for hex
           rpcTarget: neroChain.rpcUrls.default.http[0],
           displayName: neroChain.name,
-          blockExplorer: neroChain.blockExplorers?.default.url || "", 
+          blockExplorer: neroChain.blockExplorers?.default.url || "",
           ticker: neroChain.nativeCurrency.symbol,
           tickerName: neroChain.nativeCurrency.name,
         };
 
+        console.log("Using Custom Chain Config:", chainConfig);
+
         // Create Ethereum provider
         const privateKeyProvider = new EthereumPrivateKeyProvider({
-          config: { chainConfig }
+          config: { chainConfig },
         });
 
         // Initialize Web3Auth
         const web3auth = new Web3Auth({
           clientId: clientId,
-          web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
+          web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET, // Use Mainnet for custom chains
           privateKeyProvider,
         });
 

@@ -4,7 +4,7 @@ import { defineChain } from 'viem';
 
 // Nero Chain definition
 export const neroChain = defineChain({
-  id: 0x5afe, // 23294 in decimal
+  id: 689, // 0x2B1 in hex
   name: 'Nero Testnet',
   network: 'nero-testnet',
   nativeCurrency: {

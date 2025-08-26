@@ -20,7 +20,7 @@ module.exports = {
     },
     nero: {
       url: process.env.VITE_NERO_RPC_URL || "https://nero-testnet.node.binaryx.pro",
-      chainId: parseInt(process.env.VITE_NERO_CHAIN_ID) || 0x5afe,
+      chainId: parseInt(process.env.VITE_NERO_CHAIN_ID) || 689,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       gas: 8000000,
       gasPrice: 1500000000, // 1.5 gwei
