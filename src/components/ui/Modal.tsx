@@ -1,7 +1,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from './Card';
-import { Button } from './Button';
+import { Card, CardContent, CardHeader, CardTitle } from "./card";
+import { Button } from "./button";
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,7 +20,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
     >
       <Card 
         className="relative w-full max-w-lg mx-4 animate-in zoom-in-95 border-toda-blue/20" 
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
       >
         <CardHeader className="flex flex-row items-center justify-between border-b border-toda-grey/20">
           <CardTitle className="text-toda-blue">{title}</CardTitle>

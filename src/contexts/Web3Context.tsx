@@ -188,6 +188,7 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
     login,
     logout,
     executeGaslessMint,
+    contractService,
     provider,
     safeAddress,
     userAddress,

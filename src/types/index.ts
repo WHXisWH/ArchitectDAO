@@ -1,16 +1,20 @@
 import { ethers } from 'ethers';
+import { ContractService } from '@/utils/contracts';
 
 export interface NFTAsset {
-  id: number;
+  id: string;
   name: string;
-  author: string;
-  price: string;
-  image: string;
   description: string;
+  creator: string;
+  owner: string;
+  price: string | number;
+  image?: string;
+  imageUrl?: string;
   fileType: string;
   createdAt?: string;
   tokenId?: string;
   contractAddress?: string;
+  previewFileUrl?: string;
 }
 
 export interface User {
@@ -37,7 +41,8 @@ export interface Transaction {
 export interface Web3ContextType {
   login: () => Promise<void>;
   logout: () => Promise<void>;
-  executeGaslessMint: (metadataUri: string) => Promise<{ success: boolean; hash: string } | null>;
+  executeGaslessMint: (metadataUri: string) => Promise<{ success: boolean; hash: string; tokenId?: string } | null>;
+  contractService: ContractService | null;
   provider: ethers.providers.Web3Provider | null;
   safeAddress: string;
   userAddress: string;

@@ -20,6 +20,9 @@ describe("ArchitectDAO Contracts", function () {
     const ArchitectDAOMarketplace = await ethers.getContractFactory("ArchitectDAOMarketplace");
     marketplaceContract = await ArchitectDAOMarketplace.deploy();
     await marketplaceContract.deployed();
+    
+    // Authorize user1 to mint NFTs
+    await nftContract.connect(owner).authorizeMinter(user1.address);
   });
 
   describe("ArchitectDAONFT", function () {
@@ -76,6 +79,15 @@ describe("ArchitectDAO Contracts", function () {
       await expect(
         nftContract.connect(user1).mint(user1.address, tokenURI, invalidRoyaltyPercentage)
       ).to.be.revertedWith("Royalty percentage cannot exceed 10%");
+    });
+    
+    it("Should reject minting from unauthorized address", async function () {
+      const tokenURI = "https://example.com/metadata/1.json";
+      const royaltyPercentage = 500;
+
+      await expect(
+        nftContract.connect(user2).mint(user2.address, tokenURI, royaltyPercentage)
+      ).to.be.revertedWith("Not authorized to mint");
     });
   });
 

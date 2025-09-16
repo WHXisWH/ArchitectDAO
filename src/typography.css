@@ -1,0 +1,27 @@
+.h1 {
+  @apply text-4xl font-bold tracking-tight lg:text-5xl;
+}
+
+.h2 {
+  @apply text-3xl font-bold tracking-tight;
+}
+
+.h3 {
+  @apply text-2xl font-bold tracking-tight;
+}
+
+.h4 {
+  @apply text-xl font-bold tracking-tight;
+}
+
+.body {
+  @apply text-base;
+}
+
+.body-lg {
+  @apply text-lg;
+}
+
+.caption {
+  @apply text-sm;
+}

@@ -74,7 +74,7 @@ export class PaymasterService {
     }
   }
 
-  async estimateUserOpGas(userOp: Partial<UserOperation>, _provider?: ethers.providers.Provider): Promise<{
+  async estimateUserOpGas(userOp: Partial<UserOperation>): Promise<{
     callGasLimit: string;
     verificationGasLimit: string;
     preVerificationGas: string;

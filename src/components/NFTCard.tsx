@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Wallet } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { shortAddress } from '@/utils';
+import { ModelViewer } from './ModelViewer';
 import { useTranslation } from 'react-i18next';
-import { NFTAsset } from '@/types';
-import { shortAddress, formatPrice } from '@/utils';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Modal } from '@/components/ui/Modal';
+import { NFTAsset } from '@/types'; // Import NFTAsset
 
 interface NFTCardProps {
   nft: NFTAsset;
@@ -13,94 +13,39 @@ interface NFTCardProps {
 
 export const NFTCard: React.FC<NFTCardProps> = ({ nft }) => {
   const { t } = useTranslation();
-  const [isDetailOpen, setIsDetailOpen] = useState(false);
+
+  // Check for 3D preview file
+  // Get preview file info from localStorage
+  const has3DPreview = nft.previewFileUrl && localStorage.getItem(`3d_preview_${nft.id}`);
 
   return (
-    <>
-      <Card 
-        className="group cursor-pointer overflow-hidden hover:border-toda-blue/40 transition-all duration-300" 
-        onClick={() => setIsDetailOpen(true)}
-      >
-        <div className="overflow-hidden">
-          <img 
-            src={nft.image} 
-            alt={nft.name} 
-            className="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300" 
-          />
+    <Card className="overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col">
+      <div className="relative w-full h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+        {has3DPreview ? (
+          <ModelViewer modelUrl={nft.previewFileUrl!} />
+        ) : (
+          <img src={nft.image} alt={nft.name} className="object-cover w-full h-full" />
+        )}
+        {has3DPreview && (
+          <span className="absolute bottom-2 right-2 bg-purple-600 text-white text-xs px-2 py-1 rounded-full">
+            {t('nftCard.preview3DModel')}
+          </span>
+        )}
+      </div>
+      <CardContent className="p-4 flex-grow">
+        <h3 className="text-lg font-semibold text-gray-800 truncate">{nft.name}</h3>
+        <p className="text-sm text-gray-600 mt-1 line-clamp-2">{nft.description}</p>
+        <div className="mt-3 text-sm">
+          <p className="text-gray-700">{t('marketplace.author')} {shortAddress(nft.creator)}</p>
+          <p className="text-gray-700">{t('marketplace.fileType')} {nft.fileType}</p>
         </div>
-        <CardHeader>
-          <CardTitle className="text-slate-800 group-hover:text-toda-blue transition-colors">
-            {nft.name}
-          </CardTitle>
-          <CardDescription>
-            {t('marketplace.author')} {shortAddress(nft.author)}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex justify-between items-center">
-            <div className="text-xl font-bold text-toda-red">
-              {formatPrice(nft.price)} ETH
-            </div>
-            <div className="text-sm text-slate-500">
-              {nft.fileType}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-      
-      <Modal 
-        isOpen={isDetailOpen} 
-        onClose={() => setIsDetailOpen(false)} 
-        title={nft.name}
-      >
-        <div className="space-y-4">
-          <img 
-            src={nft.image} 
-            alt={nft.name} 
-            className="w-full h-64 object-cover rounded-lg"
-          />
-          <p className="text-slate-600 leading-relaxed">
-            {nft.description}
-          </p>
-          <div className="text-sm bg-slate-50 p-4 rounded-lg space-y-2 border border-toda-blue/10">
-            <p>
-              <span className="font-semibold text-toda-blue">
-                {t('nft.creatorAddress')}
-              </span> 
-              <span className="font-mono break-all ml-2 text-slate-600">
-                {nft.author}
-              </span>
-            </p>
-            <p>
-              <span className="font-semibold text-toda-blue">
-                {t('nft.fileFormat')}
-              </span> 
-              <span className="ml-2 text-slate-600">
-                {nft.fileType}
-              </span>
-            </p>
-            {nft.createdAt && (
-              <p>
-                <span className="font-semibold text-toda-blue">
-                  Created:
-                </span> 
-                <span className="ml-2 text-slate-600">
-                  {nft.createdAt}
-                </span>
-              </p>
-            )}
-          </div>
-          <div className="pt-4">
-            <Button 
-              size="lg" 
-              className="w-full bg-toda-red hover:bg-toda-red/90"
-            >
-              <Wallet className="mr-2 h-5 w-5"/>
-              {t('nft.purchase')} {formatPrice(nft.price)} ETH
-            </Button>
-          </div>
-        </div>
-      </Modal>
-    </>
+      </CardContent>
+      <CardFooter className="p-4 bg-gray-50 border-t flex justify-between items-center">
+        <span className="text-xl font-bold text-toda-blue">{nft.price} NERO</span>
+        <Link to={`/nft/${nft.id}`}>
+          <Button>{t('marketplace.purchase')}</Button>
+        </Link>
+      </CardFooter>
+    </Card>
   );
 };

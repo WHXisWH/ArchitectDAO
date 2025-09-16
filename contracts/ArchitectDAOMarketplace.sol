@@ -15,6 +15,9 @@ contract ArchitectDAOMarketplace is ReentrancyGuard, Ownable {
     // Marketplace fee percentage in basis points (e.g., 250 = 2.5%)
     uint256 public marketplaceFeePercentage = 250; // 2.5% default fee
     
+    // Address of the ArchitectDAO NFT contract
+    address public architectDAONFTContract;
+    
     struct Listing {
         uint256 listingId;
         address nftContract;
@@ -52,6 +55,7 @@ contract ArchitectDAOMarketplace is ReentrancyGuard, Ownable {
     event ListingCanceled(uint256 indexed listingId);
     event PriceUpdated(uint256 indexed listingId, uint256 newPrice);
     event MarketplaceFeeUpdated(uint256 newFeePercentage);
+    event NFTContractUpdated(address indexed newNFTContract);
     
     /**
      * @dev List an NFT for sale
@@ -121,8 +125,8 @@ contract ArchitectDAOMarketplace is ReentrancyGuard, Ownable {
         address creator = address(0);
         
         // Check if it's our NFT contract and calculate royalties
-        if (nftContract == address(this)) {
-            try ArchitectDAONFT(nftContract).getRoyaltyInfo(tokenId) returns (address _creator, uint256 royaltyPercentage) {
+        if (listing.nftContract == architectDAONFTContract && architectDAONFTContract != address(0)) {
+            try ArchitectDAONFT(listing.nftContract).getRoyaltyInfo(tokenId) returns (address _creator, uint256 royaltyPercentage) {
                 creator = _creator;
                 royaltyAmount = (price * royaltyPercentage) / 10000;
             } catch {
@@ -211,7 +215,7 @@ contract ArchitectDAOMarketplace is ReentrancyGuard, Ownable {
     }
     
     /**
-     * @dev Get active listings (paginated)
+     * @dev Get active listings (paginated) - Optimized for Gas
      * @param offset Starting index
      * @param limit Number of listings to return
      * @return activeListings Array of active listings
@@ -222,38 +226,37 @@ contract ArchitectDAOMarketplace is ReentrancyGuard, Ownable {
         returns (Listing[] memory) 
     {
         require(limit <= 50, "Limit too high");
+        require(limit > 0, "Limit must be greater than 0");
         
         uint256 totalListings = _listingIdCounter.current();
-        uint256 activeCount = 0;
-        
-        // Count active listings
-        for (uint256 i = 1; i <= totalListings; i++) {
-            if (listings[i].active) {
-                activeCount++;
-            }
-        }
-        
-        if (offset >= activeCount) {
+        if (totalListings == 0) {
             return new Listing[](0);
         }
         
-        uint256 resultSize = limit;
-        if (offset + limit > activeCount) {
-            resultSize = activeCount - offset;
-        }
-        
-        Listing[] memory result = new Listing[](resultSize);
+        // Pre-allocate array with maximum possible size
+        Listing[] memory tempResult = new Listing[](limit);
         uint256 resultIndex = 0;
         uint256 currentIndex = 0;
         
-        for (uint256 i = 1; i <= totalListings && resultIndex < resultSize; i++) {
+        // Single loop with early termination
+        for (uint256 i = 1; i <= totalListings && resultIndex < limit; i++) {
             if (listings[i].active) {
                 if (currentIndex >= offset) {
-                    result[resultIndex] = listings[i];
+                    tempResult[resultIndex] = listings[i];
                     resultIndex++;
                 }
                 currentIndex++;
             }
+        }
+        
+        // Return properly sized array
+        if (resultIndex == 0) {
+            return new Listing[](0);
+        }
+        
+        Listing[] memory result = new Listing[](resultIndex);
+        for (uint256 i = 0; i < resultIndex; i++) {
+            result[i] = tempResult[i];
         }
         
         return result;
@@ -286,5 +289,15 @@ contract ArchitectDAOMarketplace is ReentrancyGuard, Ownable {
         
         (bool success, ) = payable(owner()).call{value: balance}("");
         require(success, "Failed to withdraw fees");
+    }
+    
+    /**
+     * @dev Set the NFT contract address (only owner)
+     * @param _nftContract Address of the ArchitectDAO NFT contract
+     */
+    function setNFTContract(address _nftContract) public onlyOwner {
+        require(_nftContract != address(0), "Invalid NFT contract address");
+        architectDAONFTContract = _nftContract;
+        emit NFTContractUpdated(_nftContract);
     }
 }

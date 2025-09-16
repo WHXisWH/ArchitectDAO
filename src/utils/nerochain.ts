@@ -23,7 +23,7 @@ export const neroChain = defineChain({
   blockExplorers: {
     default: { 
       name: 'Nero Scan', 
-      url: import.meta.env.VITE_NERO_EXPLORER_URL || 'https://scan.nerochain.io' 
+      url: import.meta.env.VITE_NERO_EXPLORER_URL || 'https://testnet.neroscan.io' 
     },
   },
 });

@@ -11,7 +11,7 @@ export const LoadingScreen: React.FC = () => {
         <Building className="h-8 w-8 text-white animate-pulse" />
       </div>
       <div className="text-center">
-        <h2 className="text-xl font-bold text-slate-800 mb-2">
+        <h2 className="h4 text-slate-800 mb-2">
           ArchitectDAO
         </h2>
         <p className="text-slate-500 animate-pulse">

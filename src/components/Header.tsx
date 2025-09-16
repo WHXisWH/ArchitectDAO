@@ -1,10 +1,30 @@
 import React from 'react';
-import { Building, LogOut, Globe } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Building, LogOut, Globe, Users, ShoppingCart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useWeb3 } from '@/contexts/Web3Context';
 import { useLanguage } from '@/hooks/useLanguage';
 import { shortAddress } from '@/utils';
-import { Button } from '@/components/ui/Button';
+import { Button } from "@/components/ui/button";
+import { cn } from '@/lib/utils';
+
+const NavLink = ({ to, children }: { to: string, children: React.ReactNode }) => {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+  return (
+    <Link
+      to={to}
+      className={cn(
+        'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2',
+        isActive
+          ? 'bg-slate-100 text-toda-blue'
+          : 'hover:bg-transparent hover:text-toda-blue/80 text-slate-600'
+      )}
+    >
+      {children}
+    </Link>
+  );
+};
 
 export const Header: React.FC = () => {
   const { t } = useTranslation();
@@ -19,18 +39,25 @@ export const Header: React.FC = () => {
     <header className="sticky top-0 z-40 w-full border-b bg-white/90 backdrop-blur-lg">
       <div className="container mx-auto flex h-20 items-center px-6">
         <div className="flex items-center space-x-3">
-          <div className="flex items-center justify-center w-10 h-10 bg-toda-blue rounded-lg">
-            <Building className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <span className="font-bold text-xl text-slate-800">
-              {t('app.title')}
-            </span>
-            <div className="text-xs text-toda-grey">
-              {t('app.tagline')}
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="flex items-center justify-center w-10 h-10 bg-toda-blue rounded-lg">
+              <Building className="h-6 w-6 text-white" />
             </div>
-          </div>
+            <div>
+              <span className="h4 text-slate-800">
+                {t('app.title')}
+              </span>
+            </div>
+          </Link>
         </div>
+
+        <nav className="flex-1 items-center justify-center hidden md:flex ml-10">
+            <div className="flex items-center space-x-2 bg-slate-50/50 p-1 rounded-lg">
+                <NavLink to="/">{t('header.marketplace')}</NavLink>
+                <NavLink to="/community"><Users className="w-4 h-4 mr-2"/>{t('header.community')}</NavLink>
+                <NavLink to="/custom-order"><ShoppingCart className="w-4 h-4 mr-2"/>{t('header.customOrder')}</NavLink>
+            </div>
+        </nav>
         
         <div className="flex flex-1 items-center justify-end space-x-4">
           <Button
