@@ -49,4 +49,7 @@ export interface Web3ContextType {
   isAuthenticated: boolean;
   isLoading: boolean;
   isLoggingIn: boolean;
+  isDemoMode: boolean;
+  enterDemoMode: () => void;
+  exitDemoMode: () => void;
 }

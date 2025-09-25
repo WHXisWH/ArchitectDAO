@@ -19,6 +19,7 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [aaService, setAAService] = useState<NeroAAService | null>(null);
   const [contractService, setContractService] = useState<ContractService | null>(null);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
   useEffect(() => {
     const initWeb3Auth = async () => {
@@ -124,16 +125,25 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
       console.error("Web3Auth not initialized yet.");
       return;
     }
-    
+
     try {
       await web3auth.logout();
       setProvider(null);
       setSafeAddress('');
       setUserAddress('');
+      setIsDemoMode(false);
     } catch (error) {
       console.error("Logout error:", error);
     }
   }, [web3auth]);
+
+  const enterDemoMode = useCallback(() => {
+    setIsDemoMode(true);
+  }, []);
+
+  const exitDemoMode = useCallback(() => {
+    setIsDemoMode(false);
+  }, []);
 
   const executeGaslessMint = useCallback(async (metadataUri: string) => {
     if (!provider || !safeAddress || !userAddress || !aaService || !contractService) {
@@ -192,9 +202,12 @@ export const Web3Provider: React.FC<{ children: React.ReactNode }> = ({ children
     provider,
     safeAddress,
     userAddress,
-    isAuthenticated: !!provider,
+    isAuthenticated: !!provider || isDemoMode,
     isLoading,
     isLoggingIn,
+    isDemoMode,
+    enterDemoMode,
+    exitDemoMode,
   };
 
   return (

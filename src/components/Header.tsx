@@ -36,15 +36,15 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-white/90 backdrop-blur-lg">
+    <header className="sticky top-0 z-40 w-full border-b border-luxury-silver/20 premium-card backdrop-blur-xl shadow-xl">
       <div className="container mx-auto flex h-20 items-center px-6">
         <div className="flex items-center space-x-3">
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-toda-blue rounded-lg">
-              <Building className="h-6 w-6 text-white" />
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-luxury-gold to-luxury-purple rounded-xl luxury-glow group-hover:scale-110 transition-all duration-300">
+              <Building className="h-7 w-7 text-white animate-float" />
             </div>
             <div>
-              <span className="h4 text-slate-800">
+              <span className="h4 text-slate-800 group-hover:text-luxury-purple transition-colors duration-300">
                 {t('app.title')}
               </span>
             </div>

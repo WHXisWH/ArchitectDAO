@@ -21,7 +21,7 @@ export interface NFTMetadata {
   fileType?: string;
   fileSize?: number;
   creator?: string;
-  previewModel?: string;  // 3D 预览模型的 URL
+  previewModel?: string;
 }
 
 // Upload file to IPFS via Pinata

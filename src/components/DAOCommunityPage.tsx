@@ -11,7 +11,7 @@ import { Briefcase, GraduationCap, Heart, Mail, Building as BuildingIcon, Bot } 
 const designers = [
   {
     name: 'Kenji Tanaka',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-e695c6edd65d?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8amFwYW5lc2UlMjBtYWxlJTIwcG9ydHJhaXQ%3D',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3',
     fallback: 'KT',
     specializationKey: 'community.designerSpecialization1',
     software: ['Revit', 'AutoCAD', 'Rhino'],
@@ -19,7 +19,7 @@ const designers = [
   },
   {
     name: 'Yuki Sato',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8amFwYW5lc2UlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHww%3D',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b5b11a85?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3',
     fallback: 'YS',
     specializationKey: 'community.designerSpecialization2',
     software: ['SketchUp', '3ds Max', 'V-Ray'],
@@ -27,7 +27,7 @@ const designers = [
   },
   {
     name: 'Haruto Takahashi',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8amFwYW5lc2UlMjBtYWxlJTIwcG9ydHJhaXQ%3D',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-e695c6edd65d?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3',
     fallback: 'HT',
     specializationKey: 'community.designerSpecialization3',
     software: ['GIS', 'AutoCAD', 'Lumion'],
@@ -38,22 +38,22 @@ const designers = [
 const students = [
   {
     name: 'Mai Ito',
-    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8amFwYW5lc2UlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHww%3D',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3',
     fallback: 'MI',
     university: 'University of Tokyo',
     graduationYear: 2026,
     projectTitleKey: 'community.studentProjectTitle1',
-    projectImage: 'https://picsum.photos/seed/studentproj1/1080/720',
+    projectImage: '/images/projects/parametric-pavilion.png',
     projectDescKey: 'community.studentProjectDesc1',
   },
   {
     name: 'Ren Suzuki',
-    avatar: 'https://images.unsplash.com/photo-1599566150163-29194d6b4a0d?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8amFwYW5lc2UlMjBtYWxlJTIwcG9ydHJhaXQ%3D',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3',
     fallback: 'RS',
     university: 'Kyoto Institute of Technology',
     graduationYear: 2025,
     projectTitleKey: 'community.studentProjectTitle2',
-    projectImage: 'https://picsum.photos/seed/studentproj2/1080/720',
+    projectImage: '/images/projects/modular-micro-housing.png',
     projectDescKey: 'community.studentProjectDesc2',
   },
 ];
@@ -61,18 +61,18 @@ const students = [
 const hobbyists = [
   {
     name: 'Akira Watanabe',
-    avatar: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTB8fGphcGFuZXNlJTIwbWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww%3D',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3',
     fallback: 'AW',
     creationTitleKey: 'community.hobbyistCreationTitle1',
-    creationImage: 'https://picsum.photos/seed/hobbyistproj1/1080/720',
+    creationImage: '/images/projects/fantasy-castle-blender.png',
     descriptionKey: 'community.hobbyistCreationDesc1',
   },
   {
     name: 'Emi Kobayashi',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTF8fGphcGFuZXNlJTIwZmVtYWxlJTIwcG9ydHJhaXQ%3D',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3',
     fallback: 'EK',
     creationTitleKey: 'community.hobbyistCreationTitle2',
-    creationImage: 'https://picsum.photos/seed/hobbyistproj2/1080/720',
+    creationImage: '/images/projects/japanese-tea-house.png',
     descriptionKey: 'community.hobbyistCreationDesc2',
   },
 ];
@@ -107,9 +107,22 @@ const DesignerCard = ({ designer, t }: { designer: typeof designers[0], t: any }
 );
 
 const StudentCard = ({ student, t }: { student: typeof students[0], t: any }) => (
-    <Card className="overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 flex flex-col">
-        <div className="aspect-video bg-slate-200 overflow-hidden">
-            <img src={student.projectImage} alt={t(student.projectTitleKey)} className="w-full h-full object-cover" />
+    <Card className="overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 flex flex-col group">
+        <div className="aspect-video bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden flex items-center justify-center relative">
+            <img
+                src={student.projectImage}
+                alt={t(student.projectTitleKey)}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                }}
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="text-4xl mb-2">🏗️</div>
+                <div className="text-sm font-medium text-center px-4">{t(student.projectTitleKey)}</div>
+                <div className="text-xs text-slate-500 mt-1">Image Coming Soon</div>
+            </div>
         </div>
         <CardHeader className="p-4">
             <CardTitle className="h6">{t(student.projectTitleKey)}</CardTitle>
@@ -131,9 +144,22 @@ const StudentCard = ({ student, t }: { student: typeof students[0], t: any }) =>
 );
 
 const HobbyistCard = ({ hobbyist, t }: { hobbyist: typeof hobbyists[0], t: any }) => (
-    <Card className="overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1">
-        <div className="aspect-video bg-slate-200 overflow-hidden">
-            <img src={hobbyist.creationImage} alt={t(hobbyist.creationTitleKey)} className="w-full h-full object-cover" />
+    <Card className="overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1 group">
+        <div className="aspect-video bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden flex items-center justify-center relative">
+            <img
+                src={hobbyist.creationImage}
+                alt={t(hobbyist.creationTitleKey)}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                }}
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="text-4xl mb-2">🎨</div>
+                <div className="text-sm font-medium text-center px-4">{t(hobbyist.creationTitleKey)}</div>
+                <div className="text-xs text-slate-500 mt-1">Image Coming Soon</div>
+            </div>
         </div>
         <CardContent className="p-4">
             <p className="font-semibold text-slate-800">{t(hobbyist.creationTitleKey)}</p>

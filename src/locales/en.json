@@ -30,7 +30,9 @@
     "loginDesc": "Login with your preferred social account to get started",
     "web3AuthSecurity": "Web3Auth Security:",
     "web3AuthSecurityDesc": "Your accounts are secured by multi-party computation (MPC). No seed phrases to remember or lose. Login with Google, Apple, Twitter or email.",
-    "termsNote": "By continuing, you agree to our Terms of Service and Privacy Policy"
+    "termsNote": "By continuing, you agree to our Terms of Service and Privacy Policy",
+    "demoMode": "Demo Mode",
+    "or": "or"
   },
   "marketplace": {
     "title": "Marketplace",
