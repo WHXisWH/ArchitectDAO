@@ -18,8 +18,6 @@ contract ArchitectDAONFT is ERC721, ERC721URIStorage, Ownable, ReentrancyGuard {
     // Mapping from token ID to royalty percentage (in basis points, e.g., 500 = 5%)
     mapping(uint256 => uint256) public tokenRoyalties;
     
-    // Mapping of authorized minters
-    mapping(address => bool) public authorizedMinters;
     
     // Maximum number of NFTs that can be minted per transaction
     uint256 public constant MAX_BATCH_SIZE = 10;
@@ -27,27 +25,22 @@ contract ArchitectDAONFT is ERC721, ERC721URIStorage, Ownable, ReentrancyGuard {
     // Events
     event NFTMinted(uint256 indexed tokenId, address indexed creator, string tokenURI);
     event RoyaltySet(uint256 indexed tokenId, uint256 royaltyPercentage);
-    event MinterAuthorized(address indexed minter);
-    event MinterRevoked(address indexed minter);
     
     constructor() ERC721("ArchitectDAO NFT", "ARCH") {
-        // Owner is automatically authorized to mint
-        authorizedMinters[msg.sender] = true;
     }
     
     /**
-     * @dev Mint NFT with metadata URI (only authorized minters)
+     * @dev Mint NFT with metadata URI
      * @param to Address to mint the NFT to
      * @param _tokenURI Metadata URI for the NFT
      * @param royaltyPercentage Royalty percentage in basis points (e.g., 500 = 5%)
      * @return tokenId The minted token ID
      */
-    function mint(address to, string memory _tokenURI, uint256 royaltyPercentage) 
-        public 
-        nonReentrant 
-        returns (uint256) 
+    function mint(address to, string memory _tokenURI, uint256 royaltyPercentage)
+        public
+        nonReentrant
+        returns (uint256)
     {
-        require(authorizedMinters[msg.sender] || msg.sender == owner(), "Not authorized to mint");
         require(royaltyPercentage <= 1000, "Royalty percentage cannot exceed 10%");
         
         _tokenIdCounter.increment();
@@ -67,22 +60,21 @@ contract ArchitectDAONFT is ERC721, ERC721URIStorage, Ownable, ReentrancyGuard {
     }
     
     /**
-     * @dev Batch mint multiple NFTs (only authorized minters)
+     * @dev Batch mint multiple NFTs
      * @param to Address to mint the NFTs to
      * @param tokenURIs Array of metadata URIs
      * @param royaltyPercentages Array of royalty percentages
      * @return tokenIds Array of minted token IDs
      */
     function batchMint(
-        address to, 
-        string[] memory tokenURIs, 
+        address to,
+        string[] memory tokenURIs,
         uint256[] memory royaltyPercentages
-    ) 
-        public 
-        nonReentrant 
-        returns (uint256[] memory) 
+    )
+        public
+        nonReentrant
+        returns (uint256[] memory)
     {
-        require(authorizedMinters[msg.sender] || msg.sender == owner(), "Not authorized to mint");
         require(tokenURIs.length == royaltyPercentages.length, "Arrays length mismatch");
         require(tokenURIs.length <= MAX_BATCH_SIZE, "Exceeds maximum batch size");
         
@@ -180,31 +172,4 @@ contract ArchitectDAONFT is ERC721, ERC721URIStorage, Ownable, ReentrancyGuard {
         return super.supportsInterface(interfaceId);
     }
     
-    /**
-     * @dev Authorize an address to mint NFTs (only owner)
-     * @param minter Address to authorize
-     */
-    function authorizeMinter(address minter) public onlyOwner {
-        require(minter != address(0), "Invalid minter address");
-        authorizedMinters[minter] = true;
-        emit MinterAuthorized(minter);
-    }
-    
-    /**
-     * @dev Revoke minting authorization (only owner)
-     * @param minter Address to revoke authorization from
-     */
-    function revokeMinter(address minter) public onlyOwner {
-        authorizedMinters[minter] = false;
-        emit MinterRevoked(minter);
-    }
-    
-    /**
-     * @dev Check if an address is authorized to mint
-     * @param minter Address to check
-     * @return true if authorized, false otherwise
-     */
-    function isMinterAuthorized(address minter) public view returns (bool) {
-        return authorizedMinters[minter] || minter == owner();
-    }
 }
